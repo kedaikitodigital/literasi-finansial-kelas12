@@ -3,181 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jurnal Literasi Finansial - Kelas 12</title>
+    <title id="page-title-meta">E-Wallet - MA Ash-Shiddiiqi</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: {} } }
+    </script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        @media print {
+            body { background: white !important; color: black !important; }
+            .no-print { display: none !important; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { border: 1px solid #cbd5e1; padding: 8px; color: black !important; }
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-full flex flex-col selection:bg-indigo-500 selection:text-white">
+<body id="app-body" class="bg-slate-950 text-slate-100 min-h-full flex flex-col selection:bg-teal-500 selection:text-white transition-colors duration-300">
 
     <!-- NAVBAR PREMIUM -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+    <header class="no-print bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/80 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
-                    <i class="fa-solid fa-vault text-white text-lg"></i>
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="location.reload()">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-teal-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-wallet text-slate-950 text-lg"></i>
                 </div>
-                <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">Jurnal Literasi Finansial</span>
+                <div>
+                    <span id="app-title-nav" class="font-extrabold text-lg tracking-tight text-white block leading-none">E-Wallet</span>
+                    <span id="app-school-nav" class="text-[11px] text-teal-400 font-bold uppercase tracking-wider mt-1 block">MA Ash-Shiddiiqi</span>
+                </div>
             </div>
-            <div id="nav-auth-section" class="flex items-center space-x-4">
-                <!-- Dinamis via JS -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-teal-400 hover:bg-slate-800 transition" title="Ganti Tema">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+                <div id="nav-auth-section" class="flex items-center space-x-3">
+                    <!-- Dinamis via JS -->
+                </div>
             </div>
         </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-10">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-12">
 
-        <!-- 1. LANDING PAGE ELEGAN -->
-        <section id="view-landing" class="space-y-16 py-10">
-            <div class="text-center space-y-6 max-w-3xl mx-auto">
-                <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 rounded-full text-indigo-400 text-xs font-semibold uppercase tracking-widest">
-                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-                    <span>Kurikulum Merdeka • Kelas 12</span>
+        <!-- 1. LANDING PAGE -->
+        <section id="view-landing" class="space-y-16 py-6">
+            <div class="text-center space-y-8 max-w-4xl mx-auto">
+                <div class="inline-flex items-center space-x-2 bg-teal-500/10 border border-teal-500/20 px-4 py-2 rounded-full text-teal-400 text-xs font-bold uppercase tracking-widest shadow-inner">
+                    <span class="w-2.5 h-2.5 rounded-full bg-teal-400 animate-ping"></span>
+                    <span>Kurikulum Merdeka • Literasi Keuangan Terpadu</span>
                 </div>
-                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                    Membangun Fondasi <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Finansial Cerdas</span> Sejak Dini
+                <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                    Kelola Keuangan Cerdas, <br><span class="bg-gradient-to-r from-teal-400 via-emerald-300 to-amber-400 bg-clip-text text-transparent">Masa Depan Berkualitas</span>
                 </h1>
-                <p class="text-lg text-slate-400 leading-relaxed">
-                    Platform eksklusif bagi siswa Kelas 12 untuk mengelola jurnal keuangan harian, mempelajari instrumen kekayaan, dan dipantau secara transparan oleh guru pengampu.
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-normal">
+                    Platform digital eksklusif warga MA Ash-Shiddiiqi untuk mencatat arus kas, evaluasi pengeluaran, jurnal harian berkesinambungan, dan pemantauan guru secara transparan.
                 </p>
-                <div class="flex flex-wrap justify-center gap-4 pt-4">
-                    <button onclick="switchModal('login')" class="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-xl shadow-indigo-600/20 transition-all duration-200 transform hover:-translate-y-0.5">
+                <div class="flex flex-wrap justify-center gap-5 pt-4">
+                    <button onclick="switchModal('login')" class="bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 font-bold px-9 py-4 rounded-2xl shadow-xl shadow-teal-500/20 hover:scale-105 transition duration-200">
                         <i class="fa-solid fa-right-to-bracket mr-2"></i> Masuk ke Akun
                     </button>
-                    <button onclick="switchModal('signup')" class="bg-slate-800 hover:bg-slate-700/80 text-slate-200 border border-slate-700 font-semibold px-8 py-4 rounded-2xl transition-all duration-200">
+                    <button onclick="switchModal('signup')" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-bold px-9 py-4 rounded-2xl hover:scale-105 transition duration-200">
                         <i class="fa-solid fa-user-plus mr-2"></i> Daftar Akun Baru
                     </button>
                 </div>
             </div>
 
-            <!-- Kartu Fitur Berkelas -->
-            <div class="grid md:grid-cols-3 gap-6 pt-6">
-                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-indigo-500/40 transition">
-                    <div class="w-14 h-14 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center text-2xl">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Modul Edukasi Elite</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Pahami pengelolaan uang saku, alokasi anggaran 50/30/20, serta cara menghindari jebakan utang konsumtif.</p>
+            <!-- Kartu Fitur Unggulan -->
+            <div class="grid md:grid-cols-3 gap-8 pt-8">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-3xl space-y-4 hover:border-teal-500/40 transition group">
+                    <div class="w-14 h-14 bg-teal-500/10 text-teal-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3 class="text-xl font-bold text-white">Analisis Grafik Kas</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pantau proporsi pengeluaran harian secara visual otomatis berdasarkan kategori alokasi.</p>
                 </div>
-                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-emerald-500/40 transition">
-                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl">
-                        <i class="fa-solid fa-wallet"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Jurnal Keuangan Interaktif</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Catat pemasukan dan pengeluaran secara real-time dengan refleksi literasi keuangan pada setiap transaksi.</p>
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-3xl space-y-4 hover:border-emerald-500/40 transition group">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition"><i class="fa-solid fa-calendar-days"></i></div>
+                    <h3 class="text-xl font-bold text-white">Jurnal Harian Lifetime</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Catat kegiatan harian, checklist keterlaksanaan, ibadah, serta refleksi anti-FOMO tanpa batas waktu.</p>
                 </div>
-                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-amber-500/40 transition">
-                    <div class="w-14 h-14 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-2xl">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Monitoring Guru Lifetime</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Guru pengampu mapel dapat memantau kedisiplinan dan rekapitulasi jurnal seluruh siswa kapan pun dibutuhkan.</p>
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-8 rounded-3xl space-y-4 hover:border-amber-500/40 transition group">
+                    <div class="w-14 h-14 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="text-xl font-bold text-white">Monitoring & Kontrol Guru</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pengawasan penuh guru pengampu, manajemen akun siswa, dan cetak rekapitulasi formal[span_6](start_span)[span_6](end_span).</p>
                 </div>
             </div>
         </section>
 
         <!-- 2. DASHBOARD SISWA -->
         <section id="view-student" class="hidden space-y-8 py-4">
-            <div class="bg-gradient-to-r from-slate-800 to-slate-800/60 border border-slate-700/60 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-900/80 border border-slate-800 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
                 <div>
-                    <span class="text-indigo-400 text-xs font-semibold uppercase tracking-wider">Ruang Siswa Kelas 12</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">Dashboard Keuangan</h2>
+                    <span class="text-teal-400 text-xs font-bold uppercase tracking-wider">Ruang Siswa • MA Ash-Shiddiiqi</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Dashboard E-Wallet</h2>
                     <p class="text-slate-400 text-sm mt-1" id="student-welcome-email">Login sebagai: <span class="text-slate-200 font-medium">-</span></p>
                 </div>
-                <div class="bg-slate-900/80 border border-emerald-500/30 px-6 py-4 rounded-2xl flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl">
+                <div class="bg-slate-950/80 border border-teal-500/30 px-6 py-4 rounded-2xl flex items-center space-x-4 shadow-inner">
+                    <div class="w-12 h-12 bg-teal-500/10 text-teal-400 rounded-xl flex items-center justify-center text-xl">
                         <i class="fa-solid fa-sack-dollar"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-semibold uppercase">Total Saldo Bersih</span>
-                        <span class="text-2xl font-extrabold text-emerald-400" id="stat-balance">Rp 0</span>
+                        <span class="block text-xs text-slate-400 font-bold uppercase">Total Saldo Bersih</span>
+                        <span class="text-2xl font-extrabold text-teal-400" id="stat-balance">Rp 0</span>
                     </div>
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Form Jurnal -->
-                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-6">
-                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-pen-nib mr-3 text-indigo-400"></i>Catat Jurnal Baru</h3>
-                    <form id="form-journal" class="space-y-5">
+            <!-- Tab Navigasi Siswa -->
+            <div class="flex flex-wrap border-b border-slate-800 gap-x-6 gap-y-2">
+                <button onclick="switchStudentTab('jurnal')" id="tab-btn-jurnal" class="pb-3 font-bold text-teal-400 border-b-2 border-teal-500 text-sm transition"><i class="fa-solid fa-wallet mr-2"></i>Jurnal & Grafik</button>
+                <button onclick="switchStudentTab('lifetime')" id="tab-btn-lifetime" class="pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition"><i class="fa-solid fa-calendar-days mr-2"></i>Jurnal Harian Lifetime</button>
+                <button onclick="switchStudentTab('modul')" id="tab-btn-modul" class="pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition"><i class="fa-solid fa-graduation-cap mr-2"></i>Formula 70-20-10 & Kalkulator</button>
+                <button onclick="switchStudentTab('investasi')" id="tab-btn-investasi" class="pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition"><i class="fa-solid fa-chart-line mr-2"></i>Rencana Investasi & Dana Darurat</button>
+                <button onclick="switchStudentTab('tips')" id="tab-btn-tips" class="pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition"><i class="fa-solid fa-lightbulb mr-2"></i>Tips Pintar & Evaluasi</button>
+            </div>
+
+            <!-- Tab 1: Jurnal & Grafik -->
+            <div id="student-tab-jurnal" class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-5 shadow-xl">
+                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-pen-nib mr-3 text-teal-400"></i>Catat Transaksi Baru</h3>
+                    <form id="form-journal" class="space-y-4">
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Jenis Transaksi</label>
-                            <select id="j-type" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
-                                <option value="Pemasukan">Pemasukan (Uang Saku / Lainnya)</option>
-                                <option value="Pengeluaran">Pengeluaran (Konsumsi / Kebutuhan)</option>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Jenis Transaksi</label>
+                            <select id="j-type" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500">
+                                <option value="Pemasukan">Pemasukan (Uang Saku / Hadiah)</option>
+                                <option value="Pengeluaran">Pengeluaran</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Nominal (Rp)</label>
-                            <input type="number" id="j-amount" required placeholder="Contoh: 50000" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Kategori Alokasi</label>
+                            <select id="j-category" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500">
+                                <option value="Kebutuhan Utama">Kebutuhan Utama (Makan, Transport)</option>
+                                <option value="Kebutuhan Pendukung">Kebutuhan Pendukung</option>
+                                <option value="Keinginan / Hiburan">Keinginan / Hiburan (FOMO)</option>
+                                <option value="Tabungan Tujuan">Tabungan Tujuan</option>
+                                <option value="Berbagi / Sedekah">Berbagi / Sedekah</option>
+                                <option value="Cadangan Tak Terduga">Cadangan Tak Terduga</option>
+                            </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Refleksi / Catatan Literasi</label>
-                            <textarea id="j-desc" rows="3" required placeholder="Contoh: Menyisihkan 20% untuk tabungan darurat." class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Nominal (Rp)</label>
+                            <input type="number" id="j-amount" required placeholder="Contoh: 50000" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500">
                         </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold py-3.5 rounded-2xl shadow-lg shadow-indigo-600/20 transition">Simpan ke Jurnal</button>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Catatan Kejujuran / Refleksi</label>
+                            <textarea id="j-desc" rows="2" required placeholder="Tuliskan catatan transaksi apa adanya..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 font-bold py-3.5 rounded-2xl shadow-lg transition">Simpan ke Jurnal</button>
                     </form>
                 </div>
 
-                <!-- Tabel Riwayat -->
-                <div class="lg:col-span-2 bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-6">
-                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-clock-rotate-left mr-3 text-indigo-400"></i>Riwayat Keuangan Anda</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="border-b border-slate-700 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                                    <th class="py-3 px-4">Tanggal</th>
-                                    <th class="py-3 px-4">Status</th>
-                                    <th class="py-3 px-4">Nominal</th>
-                                    <th class="py-3 px-4">Refleksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="student-journal-list" class="text-sm divide-y divide-slate-700/50">
-                                <!-- Data via JS -->
-                            </tbody>
-                        </table>
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-3xl flex flex-col items-center shadow-xl">
+                        <h3 class="text-lg font-bold text-white mb-4 w-full text-left"><i class="fa-solid fa-chart-pie mr-2 text-teal-400"></i>Analisis Pengeluaran Berdasarkan Kategori</h3>
+                        <div class="w-full max-w-xs h-64 flex justify-center items-center">
+                            <canvas id="expenseChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-4 shadow-xl">
+                        <div class="flex justify-between items-center flex-wrap gap-3">
+                            <h3 class="text-xl font-bold text-white">Riwayat Keuangan & Ekspor</h3>
+                            <div class="flex gap-2">
+                                <button onclick="exportToCSV()" class="bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 border border-teal-500/30 px-4 py-2 rounded-xl text-xs font-bold transition"><i class="fa-solid fa-file-excel mr-2"></i>Ekspor Excel</button>
+                                <button onclick="shareViaWhatsApp()" class="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-4 py-2 rounded-xl text-xs font-bold transition"><i class="fa-brands fa-whatsapp mr-2"></i>Kirim WA</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-800 text-xs font-bold text-slate-400 uppercase">
+                                        <th class="py-3 px-3">Tanggal</th>
+                                        <th class="py-3 px-3">Kategori</th>
+                                        <th class="py-3 px-3">Status</th>
+                                        <th class="py-3 px-3">Nominal</th>
+                                        <th class="py-3 px-3">Catatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="student-journal-list" class="text-sm divide-y divide-slate-800/60">
+                                    <!-- Data JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Jurnal Harian Lifetime (Dengan Checklist & Tabel Rekap) -->
+            <div id="student-tab-lifetime" class="hidden space-y-6">
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 shadow-xl">
+                    <div class="flex justify-between items-center flex-wrap gap-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-calendar-check mr-2 text-teal-400"></i>Jurnal Harian Lifetime & Checklist</h3>
+                            <p class="text-slate-400 text-sm">Catat aktivitas harian, centang status keterlaksanaan, ibadah, dan refleksi keuangan Anda[span_7](start_span)[span_7](end_span).</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1">Pilih Tanggal Jurnal</label>
+                            <input type="date" id="daily-date-picker" onchange="loadLifetimeLog()" class="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-sm text-teal-400 font-bold outline-none">
+                        </div>
+                    </div>
+
+                    <form id="form-lifetime" class="space-y-4 pt-2">
+                        <div class="flex items-center space-x-3 bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                            <input type="checkbox" id="lt-done" class="w-5 h-5 accent-teal-500 rounded cursor-pointer">
+                            <label for="lt-done" class="text-sm font-bold text-teal-300 cursor-pointer">Tandai kegiatan hari ini sudah terlaksana sepenuhnya (*Checklist*)</label>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Rencana Kegiatan Hari Ini</label>
+                                <textarea id="lt-plan" rows="3" placeholder="Ibadah, membantu keluarga, belajar, olahraga..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Realisasi & Catatan Kegiatan</label>
+                                <textarea id="lt-real" rows="3" placeholder="Apa yang benar-benar terlaksana..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Refleksi Keuangan / Godaan Hari Ini</label>
+                                <textarea id="lt-reflection" rows="2" placeholder="Adakah godaan beli karena tren/iklan/FOMO?..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Komitmen / Perbaikan Besok</label>
+                                <textarea id="lt-lesson" rows="2" placeholder="Satu komitmen perbaikan untuk esok hari..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button" onclick="saveLifetimeLog()" class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-6 py-3 rounded-2xl shadow-lg transition">Simpan Jurnal Harian</button>
+                            <button type="button" onclick="shareDailyReportEmail()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-6 py-3 rounded-2xl border border-slate-700 transition"><i class="fa-solid fa-envelope mr-2"></i>Kirim Laporan via Email</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab 3: Modul & Formula 70-20-10 + Kalkulator -->
+            <div id="student-tab-modul" class="hidden grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-5 shadow-xl">
+                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-chart-pie mr-3 text-amber-400"></i>Formula Alokasi 70-20-10</h3>
+                    <p class="text-slate-400 text-sm">Simulasi alokasi dana secara rasional sesuai panduan literasi[span_8](start_span)[span_8](end_span):</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1">Total Anggaran Acuan (Rp)</label>
+                            <input type="number" id="sim-total" value="100000" oninput="calculateFormula()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-200">
+                        </div>
+                        <div class="p-4 bg-slate-950 rounded-2xl space-y-2 border border-slate-800 text-sm">
+                            <div class="flex justify-between"><span>70% Kebutuhan Pokok[span_9](start_span)[span_9](end_span):</span> <strong id="res-70" class="text-teal-400">Rp 70.000</strong></div>
+                            <div class="flex justify-between"><span>20% Tabungan Masa Depan[span_10](start_span)[span_10](end_span):</span> <strong id="res-20" class="text-amber-400">Rp 20.000</strong></div>
+                            <div class="flex justify-between"><span>10% Investasi / Belajar[span_11](start_span)[span_11](end_span):</span> <strong id="res-10" class="text-purple-400">Rp 10.000</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-5 shadow-xl">
+                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-bullseye mr-3 text-teal-400"></i>Kalkulator Target Tabungan Impian</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1">Total Biaya Target (Rp)</label>
+                            <input type="number" id="calc-target" placeholder="Contoh: 500000" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1">Target Waktu (dalam Hari)</label>
+                            <input type="number" id="calc-days" placeholder="Contoh: 30" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-sm text-slate-200">
+                        </div>
+                        <button type="button" onclick="calculateGoal()" class="w-full bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3 rounded-xl transition">Hitung Kebutuhan Harian</button>
+                        <div id="calc-result" class="hidden p-4 bg-slate-950 rounded-xl text-center border border-teal-500/30"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Rencana Investasi & Dana Darurat -->
+            <div id="student-tab-investasi" class="hidden max-w-3xl mx-auto bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 shadow-xl">
+                <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-chart-line mr-3 text-teal-400"></i>Perencanaan Investasi Aman & Simulasi Dana Darurat</h3>
+                <p class="text-slate-400 text-sm">Pahami instrumen keuangan tingkat dasar serta pentingnya cadangan dana darurat minimal 3 bulan pengeluaran bulanan.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-5 bg-slate-950 border border-slate-800 rounded-2xl space-y-3">
+                        <h4 class="font-bold text-teal-400 text-sm flex items-center"><i class="fa-solid fa-shield-halved mr-2"></i>Simulasi Dana Darurat</h4>
+                        <label class="block text-xs text-slate-400">Pengeluaran Bulanan Anda (Rp)</label>
+                        <input type="number" id="emergency-base" placeholder="Contoh: 300000" oninput="calculateEmergency()" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-200">
+                        <div id="emergency-result" class="text-xs font-bold text-emerald-400">Target Ideal (3 Bulan): Rp 0</div>
+                    </div>
+                    <div class="p-5 bg-slate-950 border border-slate-800 rounded-2xl space-y-3">
+                        <h4 class="font-bold text-amber-400 text-sm flex items-center"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Prinsip Anti-Investasi Bodong</h4>
+                        <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4">
+                            <li>Selalu cek legalitas entitas di OJK/BI.</li>
+                            <li>Hindari janji keuntungan pasti (*fixed return*) tak masuk akal.</li>
+                            <li>Waspadai skema ponzi atau rekrutmen tidak jelas.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 5: Tips Pintar & Evaluasi -->
+            <div id="student-tab-tips" class="hidden max-w-3xl mx-auto bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 shadow-xl">
+                <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-lightbulb mr-3 text-amber-400"></i>Tips Pintar & Evaluasi Keuangan Mandiri</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-5 bg-slate-950 border border-slate-800 rounded-2xl space-y-2">
+                        <h4 class="font-bold text-teal-400 text-sm flex items-center"><i class="fa-solid fa-shield mr-2"></i>Aturan 24 Jam</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Tunggu selama 24 jam sebelum membeli barang non-kebutuhan yang Anda inginkan secara impulsif.</p>
+                    </div>
+                    <div class="p-5 bg-slate-950 border border-slate-800 rounded-2xl space-y-2">
+                        <h4 class="font-bold text-teal-400 text-sm flex items-center"><i class="fa-solid fa-piggy-bank mr-2"></i>Bayar Diri Sendiri Dulu</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Sisihkan minimal 10-20% uang saku untuk tabungan segera setelah diterima.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. DASHBOARD GURU / ADMIN -->
+        <!-- 3. DASHBOARD GURU / ADMIN (DENGAN KONTROL LUAS) -->
         <section id="view-admin" class="hidden space-y-8 py-4">
-            <div class="bg-gradient-to-r from-slate-800 to-slate-800/60 border border-slate-700/60 p-8 rounded-3xl flex justify-between items-center shadow-xl">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-900/80 border border-slate-800 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
                 <div>
-                    <span class="text-indigo-400 text-xs font-semibold uppercase tracking-wider">Panel Pengampu Mapel</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">Dashboard Monitoring Lifetime</h2>
-                    <p class="text-slate-400 text-sm mt-1">Mengawasi seluruh aktivitas dan rekapitulasi jurnal finansial murid kelas 12.</p>
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Panel Pengampu Mapel • Admin & Guru</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Dashboard Kontrol & Monitoring</h2>
+                    <p class="text-slate-400 text-sm mt-1">Akses penuh: Filter data siswa, beri catatan/umpan balik nilai, manajemen akun, dan pengaturan madrasah[span_12](start_span)[span_12](end_span).</p>
                 </div>
-                <div class="bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 px-5 py-2.5 rounded-2xl font-semibold text-sm">
-                    Akses Guru / Admin
+                <div>
+                    <button onclick="window.print()" class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-5 py-3 rounded-2xl text-xs shadow-lg transition"><i class="fa-solid fa-print mr-2"></i>Cetak Laporan Rekap</button>
                 </div>
             </div>
 
-            <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-6">
-                <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-users-viewfinder mr-3 text-indigo-400"></i>Database Jurnal Seluruh Siswa</h3>
+            <!-- Tab Admin -->
+            <div class="flex border-b border-slate-800 space-x-6">
+                <button onclick="switchAdminTab('monitoring')" id="admin-btn-mon" class="pb-3 font-bold text-amber-400 border-b-2 border-amber-500 text-sm transition">Monitoring & Umpan Balik</button>
+                <button onclick="switchAdminTab('users')" id="admin-btn-usr" class="pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition">Manajemen & Reset Akun Siswa</button>
+                <button onclick="switchAdminTab('settings')" id="admin-btn-set" class="pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition">Pengaturan Branding Sekolah</button>
+            </div>
+
+            <!-- SubTab 1: Monitoring & Umpan Balik -->
+            <div id="admin-sec-monitoring" class="bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 shadow-xl">
+                <div class="flex justify-between items-center flex-wrap gap-4">
+                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-users-viewfinder mr-3 text-amber-400"></i>Rekapitulasi Jurnal & Umpan Balik Siswa</h3>
+                    <div>
+                        <input type="text" id="admin-search-filter" onkeyup="filterAdminTable()" placeholder="Cari email siswa..." class="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs text-slate-200 outline-none">
+                    </div>
+                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="border-b border-slate-700 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                            <tr class="border-b border-slate-800 text-xs font-bold text-slate-400 uppercase">
                                 <th class="py-3 px-4">Email Siswa</th>
                                 <th class="py-3 px-4">Tanggal</th>
-                                <th class="py-3 px-4">Jenis</th>
+                                <th class="py-3 px-4">Kategori</th>
+                                <th class="py-3 px-4">Status</th>
                                 <th class="py-3 px-4">Nominal</th>
-                                <th class="py-3 px-4">Catatan / Refleksi</th>
+                                <th class="py-3 px-4">Catatan & Umpan Balik Guru</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-all-journals" class="text-sm divide-y divide-slate-700/50">
+                        <tbody id="admin-all-journals" class="text-sm divide-y divide-slate-800/60">
                             <!-- Data via JS -->
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- SubTab 2: Users Management -->
+            <div id="admin-sec-users" class="hidden bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 shadow-xl">
+                <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-user-gear mr-3 text-teal-400"></i>Daftar Akun Peserta Didik</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-xs font-bold text-slate-400 uppercase">
+                                <th class="py-3 px-4">UID Siswa</th>
+                                <th class="py-3 px-4">Email Terdaftar</th>
+                                <th class="py-3 px-4">Peran (Role)</th>
+                                <th class="py-3 px-4">Aksi Kontrol</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-list" class="text-sm divide-y divide-slate-800/60">
+                            <!-- Data via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SubTab 3: Settings -->
+            <div id="admin-sec-settings" class="hidden bg-slate-900/60 border border-slate-800 p-8 rounded-3xl space-y-6 max-w-xl shadow-xl">
+                <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-sliders mr-3 text-teal-400"></i>Pengaturan Identitas Madrasah</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Nama Madrasah / Sekolah</label>
+                        <input type="text" id="set-school" value="MA Ash-Shiddiiqi" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Judul Aplikasi</label>
+                        <input type="text" id="set-title" value="E-Wallet" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-200">
+                    </div>
+                    <button type="button" onclick="saveAppSettings()" class="w-full bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3 rounded-2xl shadow-lg transition">Simpan Pengaturan Aplikasi</button>
                 </div>
             </div>
         </section>
@@ -187,60 +404,54 @@
     <!-- MODAL AUTH -->
     <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-md p-8 rounded-3xl shadow-2xl space-y-6 relative">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
             <div class="text-center space-y-2">
                 <h3 id="modal-title" class="text-2xl font-bold text-white">Masuk Akun</h3>
-                <p class="text-xs text-slate-400">Jurnal Literasi Finansial Kelas 12</p>
+                <p class="text-xs text-slate-400">E-Wallet • MA Ash-Shiddiiqi</p>
             </div>
-
             <form id="auth-form" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email</label>
-                    <input type="email" id="auth-email" required placeholder="nama@sekolah.sch.id" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Email</label>
+                    <input type="email" id="auth-email" required placeholder="nama@sekolah.sch.id" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Password</label>
-                    <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Password</label>
+                    <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500">
                 </div>
                 <div id="role-select-container" class="hidden">
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Pilih Peran (Role)</label>
-                    <select id="auth-role" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
-                        <option value="student">Siswa</option>
-                        <option value="admin">Guru / Admin</option>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Pilih Peran (Role)</label>
+                    <select id="auth-role" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-200 outline-none focus:ring-2 focus:ring-teal-500">
+                        <option value="student">Siswa Peserta Didik</option>
+                        <option value="admin">Guru / Admin Pengampu</option>
                     </select>
                 </div>
-                <button type="submit" id="auth-submit-btn" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold py-3.5 rounded-2xl shadow-lg shadow-indigo-600/20 transition">Masuk</button>
+                <button type="submit" id="auth-submit-btn" class="w-full bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500 text-slate-950 font-bold py-3.5 rounded-2xl shadow-lg transition">Masuk</button>
             </form>
-
             <div class="text-center text-sm">
-                <p id="auth-switch-text" class="text-slate-400">Belum punya akun? <button onclick="toggleAuthMode()" class="text-indigo-400 font-semibold hover:underline">Daftar</button></p>
+                <p id="auth-switch-text" class="text-slate-400">Belum punya akun? <button onclick="toggleAuthMode()" class="text-teal-400 font-bold hover:underline">Daftar</button></p>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        &copy; 2026 Jurnal Literasi Finansial Kelas 12. All rights reserved.
+    <footer class="no-print bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        &copy; 2026 MA Ash-Shiddiiqi • E-Wallet[span_13](start_span)[span_13](end_span)
     </footer>
 
     <!-- FIREBASE & APP LOGIC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, where, getDocs, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, query, where, getDocs, deleteDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // ==========================================
-        // TEMPELKAN KONFIGURASI FIREBASE ANDA DI SINI
-        // ==========================================
         const firebaseConfig = {
-            apiKey: "GANTI_DENGAN_API_KEY_ANDA",
-            authDomain: "GANTI_DENGAN_AUTH_DOMAIN_ANDA",
-            projectId: "GANTI_DENGAN_PROJECT_ID_ANDA",
-            storageBucket: "GANTI_DENGAN_STORAGE_BUCKET_ANDA",
-            messagingSenderId: "GANTI_DENGAN_MESSAGING_SENDER_ID_ANDA",
-            appId: "GANTI_DENGAN_APP_ID_ANDA"
+            apiKey: "AIzaSyCzG6Wi2Hvq-nwjDk4S6shvpC4NHMWx-Xg",
+            authDomain: "literasi-finansial-kls12.firebaseapp.com",
+            projectId: "literasi-finansial-kls12",
+            storageBucket: "literasi-finansial-kls12.firebasestorage.app",
+            messagingSenderId: "398890438684",
+            appId: "1:398890438684:web:905eccd0c28a42203a4fd9",
+            measurementId: "G-B5530PV2RF"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -248,6 +459,17 @@
         const db = getFirestore(app);
 
         let currentMode = 'login';
+        let myChart = null;
+        document.getElementById('daily-date-picker').valueAsDate = new Date();
+
+        window.toggleDarkMode = function() {
+            const body = document.getElementById('app-body');
+            body.classList.toggle('dark');
+            body.classList.toggle('bg-slate-950');
+            body.classList.toggle('bg-slate-100');
+            body.classList.toggle('text-slate-900');
+            body.classList.toggle('text-slate-100');
+        }
 
         window.switchModal = function(mode) {
             currentMode = mode;
@@ -262,12 +484,12 @@
                 title.innerText = "Masuk Akun";
                 btn.innerText = "Masuk";
                 roleContainer.classList.add('hidden');
-                switchText.innerHTML = `Belum punya akun? <button onclick="toggleAuthMode()" class="text-indigo-400 font-semibold hover:underline">Daftar</button>`;
+                switchText.innerHTML = `Belum punya akun? <button onclick="toggleAuthMode()" class="text-teal-400 font-bold hover:underline">Daftar</button>`;
             } else {
                 title.innerText = "Daftar Akun Baru";
                 btn.innerText = "Daftar";
                 roleContainer.classList.remove('hidden');
-                switchText.innerHTML = `Sudah punya akun? <button onclick="toggleAuthMode()" class="text-indigo-400 font-semibold hover:underline">Masuk</button>`;
+                switchText.innerHTML = `Sudah punya akun? <button onclick="toggleAuthMode()" class="text-teal-400 font-bold hover:underline">Masuk</button>`;
             }
         }
 
@@ -279,6 +501,98 @@
             document.getElementById('auth-modal').classList.add('hidden');
         }
 
+        window.switchStudentTab = function(tab) {
+            ['jurnal', 'lifetime', 'modul', 'investasi', 'tips'].forEach(t => {
+                document.getElementById(`student-tab-${t}`).classList.add('hidden');
+                document.getElementById(`tab-btn-${t}`).className = "pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition";
+            });
+            document.getElementById(`student-tab-${tab}`).classList.remove('hidden');
+            document.getElementById(`tab-btn-${tab}`).className = "pb-3 font-bold text-teal-400 border-b-2 border-teal-500 text-sm transition";
+        }
+
+        window.switchAdminTab = function(tab) {
+            ['monitoring', 'users', 'settings'].forEach((t, i) => {
+                const ids = ['monitoring', 'users', 'settings'];
+                const btns = ['mon', 'usr', 'set'];
+                document.getElementById(`admin-sec-${ids[i]}`).classList.add('hidden');
+                document.getElementById(`admin-btn-${btns[i]}`).className = "pb-3 font-semibold text-slate-400 hover:text-slate-200 text-sm transition";
+            });
+            document.getElementById(`admin-sec-${tab}`).classList.remove('hidden');
+            const map = {monitoring: 'mon', users: 'usr', settings: 'set'};
+            document.getElementById(`admin-btn-${map[tab]}`).className = "pb-3 font-bold text-amber-400 border-b-2 border-amber-500 text-sm transition";
+        }
+
+        window.calculateFormula = function() {
+            const total = Number(document.getElementById('sim-total').value) || 0;
+            document.getElementById('res-70').innerText = `Rp ${(total * 0.7).toLocaleString('id-ID')}`;
+            document.getElementById('res-20').innerText = `Rp ${(total * 0.2).toLocaleString('id-ID')}`;
+            document.getElementById('res-10').innerText = `Rp ${(total * 0.1).toLocaleString('id-ID')}`;
+        }
+
+        window.calculateGoal = function() {
+            const target = Number(document.getElementById('calc-target').value) || 0;
+            const days = Number(document.getElementById('calc-days').value) || 1;
+            const perDay = Math.ceil(target / days);
+            const res = document.getElementById('calc-result');
+            res.classList.remove('hidden');
+            res.innerHTML = `<p class="text-xs text-slate-400">Target Tabungan Harian:</p><p class="text-xl font-bold text-teal-400">Rp ${perDay.toLocaleString('id-ID')} / hari</p>`;
+        }
+
+        window.calculateEmergency = function() {
+            const base = Number(document.getElementById('emergency-base').value) || 0;
+            const total = base * 3;
+            document.getElementById('emergency-result').innerText = `Target Ideal (3 Bulan): Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        window.exportToCSV = function() {
+            let csv = 'Tanggal,Kategori,Status,Nominal,Catatan\n';
+            const rows = document.querySelectorAll('#student-journal-list tr');
+            rows.forEach(row => {
+                const cols = row.querySelectorAll('td');
+                if(cols.length >= 5) {
+                    csv += `"${cols[0].innerText}","${cols[1].innerText}","${cols[2].innerText}","${cols[3].innerText}","${cols[4].innerText}"\n`;
+                }
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'jurnal-keuangan-siswa.csv';
+            a.click();
+        }
+
+        window.shareViaWhatsApp = function() {
+            const balance = document.getElementById('stat-balance').innerText;
+            const text = encodeURIComponent(`*Laporan E-Wallet - MA Ash-Shiddiiqi*\nTotal Saldo Bersih: ${balance}\nSilakan cek panel guru untuk rekap lengkap.`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        window.shareDailyReportEmail = function() {
+            const date = document.getElementById('daily-date-picker').value;
+            const plan = document.getElementById('lt-plan').value;
+            const real = document.getElementById('lt-real').value;
+            const subject = encodeURIComponent(`Laporan Jurnal Harian E-Wallet - ${date}`);
+            const body = encodeURIComponent(`Rencana: ${plan}\nRealisasi: ${real}\nStatus Terlaksana: ${document.getElementById('lt-done').checked ? 'Ya' : 'Belum'}`);
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+
+        window.filterAdminTable = function() {
+            const input = document.getElementById('admin-search-filter').value.toLowerCase();
+            const rows = document.querySelectorAll('#admin-all-journals tr');
+            rows.forEach(row => {
+                const email = row.cells[0]?.innerText.toLowerCase() || '';
+                row.style.display = email.includes(input) ? '' : 'none';
+            });
+        }
+
+        window.saveTeacherFeedback = async function(docId) {
+            const feedbackText = document.getElementById(`feedback_${docId}`).value;
+            try {
+                await updateDoc(doc(db, "journals", docId), { teacherFeedback: feedbackText });
+                alert("Umpan balik guru berhasil disimpan!");
+            } catch(err) { alert("Gagal: " + err.message); }
+        }
+
         document.getElementById('auth-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('auth-email').value;
@@ -288,7 +602,7 @@
             try {
                 if(currentMode === 'signup') {
                     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    await addDoc(collection(db, "users"), {
+                    await setDoc(doc(db, "users", userCredential.user.uid), {
                         uid: userCredential.user.uid,
                         email: email,
                         role: role,
@@ -316,14 +630,11 @@
 
             if (user) {
                 viewLanding.classList.add('hidden');
-                navAuth.innerHTML = `<span class="text-sm text-slate-300 hidden sm:inline">${user.email}</span><button onclick="handleLogout()" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-sm font-semibold transition">Keluar</button>`;
+                navAuth.innerHTML = `<span class="text-sm text-slate-300 hidden sm:inline">${user.email}</span><button onclick="handleLogout()" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-sm font-bold transition">Keluar</button>`;
 
-                const q = query(collection(db, "users"), where("uid", "==", user.uid));
-                const querySnapshot = await getDocs(q);
+                const userDoc = await getDocs(query(collection(db, "users"), where("uid", "==", user.uid)));
                 let role = 'student';
-                querySnapshot.forEach((doc) => {
-                    role = doc.data().role;
-                });
+                userDoc.forEach(d => { role = d.data().role; });
 
                 if (role === 'admin') {
                     viewStudent.classList.add('hidden');
@@ -333,10 +644,10 @@
                     viewAdmin.classList.add('hidden');
                     viewStudent.classList.remove('hidden');
                     document.getElementById('student-welcome-email').querySelector('span').innerText = user.email;
-                    loadStudentJournals(user.email);
+                    loadStudentData(user.email);
                 }
             } else {
-                navAuth.innerHTML = `<button onclick="switchModal('login')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-indigo-600/20 transition">Masuk</button>`;
+                navAuth.innerHTML = `<button onclick="switchModal('login')" class="bg-teal-500 hover:bg-teal-400 text-slate-950 px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg transition">Masuk</button>`;
                 viewLanding.classList.remove('hidden');
                 viewStudent.classList.add('hidden');
                 viewAdmin.classList.add('hidden');
@@ -348,67 +659,182 @@
             const user = auth.currentUser;
             if(!user) return;
 
-            const type = document.getElementById('j-type').value;
-            const amount = Number(document.getElementById('j-amount').value);
-            const desc = document.getElementById('j-desc').value;
-
             try {
                 await addDoc(collection(db, "journals"), {
                     email: user.email,
-                    type: type,
-                    amount: amount,
-                    desc: desc,
+                    type: document.getElementById('j-type').value,
+                    category: document.getElementById('j-category').value,
+                    amount: Number(document.getElementById('j-amount').value),
+                    desc: document.getElementById('j-desc').value,
                     date: new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'}),
+                    teacherFeedback: '',
                     timestamp: serverTimestamp()
                 });
                 document.getElementById('form-journal').reset();
-                alert("Jurnal berhasil disimpan!");
-            } catch(err) {
-                alert("Gagal menyimpan: " + err.message);
-            }
+                alert("Transaksi keuangan berhasil disimpan!");
+            } catch(err) { alert("Gagal: " + err.message); }
         });
 
-        function loadStudentJournals(email) {
-            const q = query(collection(db, "journals"), where("email", "==", email));
-            onSnapshot(q, (snapshot) => {
+        window.saveLifetimeLog = async function() {
+            const user = auth.currentUser;
+            if(!user) return;
+            const dateVal = document.getElementById('daily-date-picker').value;
+            if(!dateVal) { alert("Pilih tanggal terlebih dahulu!"); return; }
+
+            try {
+                await setDoc(doc(db, "lifetimelogs", `${user.uid}_${dateVal}`), {
+                    email: user.email,
+                    date: dateVal,
+                    isDone: document.getElementById('lt-done').checked,
+                    plan: document.getElementById('lt-plan').value,
+                    real: document.getElementById('lt-real').value,
+                    reflection: document.getElementById('lt-reflection').value,
+                    lesson: document.getElementById('lt-lesson').value,
+                    updatedAt: serverTimestamp()
+                });
+                alert(`Jurnal harian tanggal ${dateVal} berhasil disimpan!`);
+            } catch(err) { alert("Gagal: " + err.message); }
+        }
+
+        window.loadLifetimeLog = async function() {
+            const user = auth.currentUser;
+            if(!user) return;
+            const dateVal = document.getElementById('daily-date-picker').value;
+            document.getElementById('lt-done').checked = false;
+            document.getElementById('lt-plan').value = '';
+            document.getElementById('lt-real').value = '';
+            document.getElementById('lt-reflection').value = '';
+            document.getElementById('lt-lesson').value = '';
+
+            const snap = await getDocs(query(collection(db, "lifetimelogs"), where("email", "==", user.email), where("date", "==", dateVal)));
+            snap.forEach(d => {
+                const data = d.data();
+                document.getElementById('lt-done').checked = data.isDone || false;
+                document.getElementById('lt-plan').value = data.plan || '';
+                document.getElementById('lt-real').value = data.real || '';
+                document.getElementById('lt-reflection').value = data.reflection || '';
+                document.getElementById('lt-lesson').value = data.lesson || '';
+            });
+        }
+
+        window.saveAppSettings = async function() {
+            try {
+                await setDoc(doc(db, "settings", "appConfig"), {
+                    schoolName: document.getElementById('set-school').value,
+                    appTitle: document.getElementById('set-title').value
+                });
+                alert("Pengaturan aplikasi berhasil diperbarui!");
+                location.reload();
+            } catch(err) { alert("Gagal: " + err.message); }
+        }
+
+        window.deleteUserAccount = async function(uid) {
+            if(confirm("Apakah Anda yakin ingin menghapus akun siswa ini dari database?")) {
+                try {
+                    await deleteDoc(doc(db, "users", uid));
+                    alert("Data akun berhasil dihapus!");
+                    loadAdminData();
+                } catch(err) { alert("Gagal: " + err.message); }
+            }
+        }
+
+        function updateExpenseChart(categoriesData) {
+            const ctx = document.getElementById('expenseChart').getContext('2d');
+            if(myChart) myChart.destroy();
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(categoriesData),
+                    datasets: [{
+                        data: Object.values(categoriesData),
+                        backgroundColor: ['#14b8a6', '#f59e0b', '#ec4899', '#8b5cf6', '#3b82f6', '#10b981']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        function loadStudentData(email) {
+            onSnapshot(query(collection(db, "journals"), where("email", "==", email)), (snapshot) => {
                 let html = '';
                 let total = 0;
+                let catTotals = {};
                 snapshot.forEach((doc) => {
                     const data = doc.data();
-                    if(data.type === 'Pemasukan') total += data.amount;
-                    else total -= data.amount;
+                    if(data.type === 'Pemasukan') {
+                        total += data.amount;
+                    } else {
+                        total -= data.amount;
+                        catTotals[data.category] = (catTotals[data.category] || 0) + data.amount;
+                    }
 
                     html += `
-                        <tr class="border-b border-slate-700/50">
-                            <td class="py-4 px-4 text-slate-400">${data.date}</td>
-                            <td class="py-4 px-4"><span class="px-3 py-1 rounded-full text-xs font-semibold ${data.type === 'Pemasukan' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">${data.type}</span></td>
-                            <td class="py-4 px-4 font-semibold text-slate-200">Rp ${data.amount.toLocaleString('id-ID')}</td>
-                            <td class="py-4 px-4 text-slate-300">${data.desc}</td>
+                        <tr class="border-b border-slate-800/60">
+                            <td class="py-3 px-3 text-slate-400">${data.date}</td>
+                            <td class="py-3 px-3 text-teal-300 font-medium">${data.category}</td>
+                            <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold ${data.type === 'Pemasukan' ? 'bg-teal-500/10 text-teal-400 border border-teal-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">${data.type}</span></td>
+                            <td class="py-3 px-3 font-bold text-slate-200">Rp ${data.amount.toLocaleString('id-ID')}</td>
+                            <td class="py-3 px-3 text-slate-300">${data.desc} ${data.teacherFeedback ? `<br><span class="text-xs text-amber-400">Guru: ${data.teacherFeedback}</span>` : ''}</td>
                         </tr>
                     `;
                 });
-                document.getElementById('student-journal-list').innerHTML = html || `<tr><td colspan="4" class="text-center py-6 text-slate-500">Belum ada catatan jurnal keuangan.</td></tr>`;
+                document.getElementById('student-journal-list').innerHTML = html || `<tr><td colspan="5" class="text-center py-6 text-slate-500">Belum ada catatan keuangan.</td></tr>`;
                 document.getElementById('stat-balance').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+                updateExpenseChart(catTotals);
             });
         }
 
         function loadAdminData() {
-            const q = query(collection(db, "journals"));
-            onSnapshot(q, (snapshot) => {
+            onSnapshot(query(collection(db, "journals")), (snapshot) => {
                 let html = '';
-                snapshot.forEach((doc) => {
-                    const data = doc.data();
+                snapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const docId = docSnap.id;
                     html += `
-                        <tr class="border-b border-slate-700/50">
-                            <td class="py-4 px-4 font-medium text-indigo-400">${data.email}</td>
+                        <tr class="border-b border-slate-800/60">
+                            <td class="py-4 px-4 font-medium text-amber-400">${data.email}</td>
                             <td class="py-4 px-4 text-slate-400">${data.date}</td>
-                            <td class="py-4 px-4"><span class="px-3 py-1 rounded-full text-xs font-semibold ${data.type === 'Pemasukan' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">${data.type}</span></td>
-                            <td class="py-4 px-4 font-semibold text-slate-200">Rp ${data.amount.toLocaleString('id-ID')}</td>
-                            <td class="py-4 px-4 text-slate-300">${data.desc}</td>
+                            <td class="py-4 px-4 text-teal-300 font-medium">${data.category}</td>
+                            <td class="py-4 px-4"><span class="px-3 py-1 rounded-full text-xs font-bold ${data.type === 'Pemasukan' ? 'bg-teal-500/10 text-teal-400 border border-teal-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">${data.type}</span></td>
+                            <td class="py-4 px-4 font-bold text-slate-200">Rp ${data.amount.toLocaleString('id-ID')}</td>
+                            <td class="py-4 px-4 space-y-2">
+                                <p class="text-slate-300 text-xs">${data.desc}</p>
+                                <div class="flex gap-2">
+                                    <input type="text" id="feedback_${docId}" value="${data.teacherFeedback || ''}" placeholder="Tulis catatan nilai..." class="bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-xs text-slate-200 w-full">
+                                    <button onclick="saveTeacherFeedback('${docId}')" class="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold px-3 py-1 rounded-lg text-xs">Simpan</button>
+                                </div>
+                            </td>
                         </tr>
                     `;
                 });
-                document.getElementById('admin-all-journals').innerHTML = html || `<tr><td colspan="5" class="text-center py-6 text-slate-500">Belum ada aktivitas jurnal dari siswa.</td></tr>`;
+                document.getElementById('admin-all-journals').innerHTML = html || `<tr><td colspan="6" class="text-center py-6 text-slate-500">Belum ada aktivitas siswa.</td></tr>`;
+            });
+
+            onSnapshot(query(collection(db, "users")), (snapshot) => {
+                let html = '';
+                snapshot.forEach((doc) => {
+                    const u = doc.data();
+                    html += `
+                        <tr class="border-b border-slate-800/60">
+                            <td class="py-4 px-4 text-xs font-mono text-slate-400">${u.uid}</td>
+                            <td class="py-4 px-4 font-medium text-slate-200">${u.email}</td>
+                            <td class="py-4 px-4"><span class="px-3 py-1 rounded-full text-xs font-bold ${u.role === 'admin' ? 'bg-amber-500/10 text-amber-400' : 'bg-teal-500/10 text-teal-400'}">${u.role}</span></td>
+                            <td class="py-4 px-4">
+                                <button onclick="deleteUserAccount('${u.uid}')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 px-3 py-1.5 rounded-xl text-xs font-bold transition">Hapus Akun</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                document.getElementById('admin-users-list').innerHTML = html || `<tr><td colspan="4" class="text-center py-6 text-slate-500">Belum ada pengguna terdaftar.</td></tr>`;
+            });
+
+            onSnapshot(doc(db, "settings", "appConfig"), (docSnap) => {
+                if(docSnap.exists()) {
+                    const cfg = docSnap.data();
+                    document.getElementById('app-school-nav').innerText = cfg.schoolName;
+                    document.getElementById('app-title-nav').innerText = cfg.appTitle;
+                    document.getElementById('page-title-meta').innerText = `${cfg.appTitle} - ${cfg.schoolName}`;
+                }
             });
         }
     </script>
