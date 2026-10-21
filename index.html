@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal Literasi Finansial - Kelas 12</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-full flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- NAVBAR PREMIUM -->
+    <header class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid fa-vault text-white text-lg"></i>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">Jurnal Literasi Finansial</span>
+            </div>
+            <div id="nav-auth-section" class="flex items-center space-x-4">
+                <!-- Dinamis via JS -->
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-10">
+
+        <!-- 1. LANDING PAGE ELEGAN -->
+        <section id="view-landing" class="space-y-16 py-10">
+            <div class="text-center space-y-6 max-w-3xl mx-auto">
+                <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 rounded-full text-indigo-400 text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                    <span>Kurikulum Merdeka • Kelas 12</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                    Membangun Fondasi <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Finansial Cerdas</span> Sejak Dini
+                </h1>
+                <p class="text-lg text-slate-400 leading-relaxed">
+                    Platform eksklusif bagi siswa Kelas 12 untuk mengelola jurnal keuangan harian, mempelajari instrumen kekayaan, dan dipantau secara transparan oleh guru pengampu.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 pt-4">
+                    <button onclick="switchModal('login')" class="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-xl shadow-indigo-600/20 transition-all duration-200 transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-right-to-bracket mr-2"></i> Masuk ke Akun
+                    </button>
+                    <button onclick="switchModal('signup')" class="bg-slate-800 hover:bg-slate-700/80 text-slate-200 border border-slate-700 font-semibold px-8 py-4 rounded-2xl transition-all duration-200">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Daftar Akun Baru
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kartu Fitur Berkelas -->
+            <div class="grid md:grid-cols-3 gap-6 pt-6">
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-indigo-500/40 transition">
+                    <div class="w-14 h-14 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Modul Edukasi Elite</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pahami pengelolaan uang saku, alokasi anggaran 50/30/20, serta cara menghindari jebakan utang konsumtif.</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-emerald-500/40 transition">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Jurnal Keuangan Interaktif</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Catat pemasukan dan pengeluaran secara real-time dengan refleksi literasi keuangan pada setiap transaksi.</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-4 hover:border-amber-500/40 transition">
+                    <div class="w-14 h-14 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Monitoring Guru Lifetime</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Guru pengampu mapel dapat memantau kedisiplinan dan rekapitulasi jurnal seluruh siswa kapan pun dibutuhkan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. DASHBOARD SISWA -->
+        <section id="view-student" class="hidden space-y-8 py-4">
+            <div class="bg-gradient-to-r from-slate-800 to-slate-800/60 border border-slate-700/60 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
+                <div>
+                    <span class="text-indigo-400 text-xs font-semibold uppercase tracking-wider">Ruang Siswa Kelas 12</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Dashboard Keuangan</h2>
+                    <p class="text-slate-400 text-sm mt-1" id="student-welcome-email">Login sebagai: <span class="text-slate-200 font-medium">-</span></p>
+                </div>
+                <div class="bg-slate-900/80 border border-emerald-500/30 px-6 py-4 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-slate-400 font-semibold uppercase">Total Saldo Bersih</span>
+                        <span class="text-2xl font-extrabold text-emerald-400" id="stat-balance">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Form Jurnal -->
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-pen-nib mr-3 text-indigo-400"></i>Catat Jurnal Baru</h3>
+                    <form id="form-journal" class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Jenis Transaksi</label>
+                            <select id="j-type" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                                <option value="Pemasukan">Pemasukan (Uang Saku / Lainnya)</option>
+                                <option value="Pengeluaran">Pengeluaran (Konsumsi / Kebutuhan)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Nominal (Rp)</label>
+                            <input type="number" id="j-amount" required placeholder="Contoh: 50000" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Refleksi / Catatan Literasi</label>
+                            <textarea id="j-desc" rows="3" required placeholder="Contoh: Menyisihkan 20% untuk tabungan darurat." class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold py-3.5 rounded-2xl shadow-lg shadow-indigo-600/20 transition">Simpan ke Jurnal</button>
+                    </form>
+                </div>
+
+                <!-- Tabel Riwayat -->
+                <div class="lg:col-span-2 bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-6">
+                    <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-clock-rotate-left mr-3 text-indigo-400"></i>Riwayat Keuangan Anda</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                                    <th class="py-3 px-4">Tanggal</th>
+                                    <th class="py-3 px-4">Status</th>
+                                    <th class="py-3 px-4">Nominal</th>
+                                    <th class="py-3 px-4">Refleksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-journal-list" class="text-sm divide-y divide-slate-700/50">
+                                <!-- Data via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. DASHBOARD GURU / ADMIN -->
+        <section id="view-admin" class="hidden space-y-8 py-4">
+            <div class="bg-gradient-to-r from-slate-800 to-slate-800/60 border border-slate-700/60 p-8 rounded-3xl flex justify-between items-center shadow-xl">
+                <div>
+                    <span class="text-indigo-400 text-xs font-semibold uppercase tracking-wider">Panel Pengampu Mapel</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Dashboard Monitoring Lifetime</h2>
+                    <p class="text-slate-400 text-sm mt-1">Mengawasi seluruh aktivitas dan rekapitulasi jurnal finansial murid kelas 12.</p>
+                </div>
+                <div class="bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 px-5 py-2.5 rounded-2xl font-semibold text-sm">
+                    Akses Guru / Admin
+                </div>
+            </div>
+
+            <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/60 p-8 rounded-3xl space-y-6">
+                <h3 class="text-xl font-bold text-white flex items-center"><i class="fa-solid fa-users-viewfinder mr-3 text-indigo-400"></i>Database Jurnal Seluruh Siswa</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                                <th class="py-3 px-4">Email Siswa</th>
+                                <th class="py-3 px-4">Tanggal</th>
+                                <th class="py-3 px-4">Jenis</th>
+                                <th class="py-3 px-4">Nominal</th>
+                                <th class="py-3 px-4">Catatan / Refleksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-all-journals" class="text-sm divide-y divide-slate-700/50">
+                            <!-- Data via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL AUTH -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md p-8 rounded-3xl shadow-2xl space-y-6 relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-2">
+                <h3 id="modal-title" class="text-2xl font-bold text-white">Masuk Akun</h3>
+                <p class="text-xs text-slate-400">Jurnal Literasi Finansial Kelas 12</p>
+            </div>
+
+            <form id="auth-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Email</label>
+                    <input type="email" id="auth-email" required placeholder="nama@sekolah.sch.id" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Password</label>
+                    <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div id="role-select-container" class="hidden">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Pilih Peran (Role)</label>
+                    <select id="auth-role" class="w-full bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="student">Siswa</option>
+                        <option value="admin">Guru / Admin</option>
+                    </select>
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold py-3.5 rounded-2xl shadow-lg shadow-indigo-600/20 transition">Masuk</button>
+            </form>
+
+            <div class="text-center text-sm">
+                <p id="auth-switch-text" class="text-slate-400">Belum punya akun? <button onclick="toggleAuthMode()" class="text-indigo-400 font-semibold hover:underline">Daftar</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        &copy; 2026 Jurnal Literasi Finansial Kelas 12. All rights reserved.
+    </footer>
+
+    <!-- FIREBASE & APP LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, where, getDocs, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // ==========================================
+        // TEMPELKAN KONFIGURASI FIREBASE ANDA DI SINI
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "GANTI_DENGAN_API_KEY_ANDA",
+            authDomain: "GANTI_DENGAN_AUTH_DOMAIN_ANDA",
+            projectId: "GANTI_DENGAN_PROJECT_ID_ANDA",
+            storageBucket: "GANTI_DENGAN_STORAGE_BUCKET_ANDA",
+            messagingSenderId: "GANTI_DENGAN_MESSAGING_SENDER_ID_ANDA",
+            appId: "GANTI_DENGAN_APP_ID_ANDA"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentMode = 'login';
+
+        window.switchModal = function(mode) {
+            currentMode = mode;
+            const modal = document.getElementById('auth-modal');
+            const title = document.getElementById('modal-title');
+            const btn = document.getElementById('auth-submit-btn');
+            const roleContainer = document.getElementById('role-select-container');
+            const switchText = document.getElementById('auth-switch-text');
+
+            modal.classList.remove('hidden');
+            if(mode === 'login') {
+                title.innerText = "Masuk Akun";
+                btn.innerText = "Masuk";
+                roleContainer.classList.add('hidden');
+                switchText.innerHTML = `Belum punya akun? <button onclick="toggleAuthMode()" class="text-indigo-400 font-semibold hover:underline">Daftar</button>`;
+            } else {
+                title.innerText = "Daftar Akun Baru";
+                btn.innerText = "Daftar";
+                roleContainer.classList.remove('hidden');
+                switchText.innerHTML = `Sudah punya akun? <button onclick="toggleAuthMode()" class="text-indigo-400 font-semibold hover:underline">Masuk</button>`;
+            }
+        }
+
+        window.toggleAuthMode = function() {
+            switchModal(currentMode === 'login' ? 'signup' : 'login');
+        }
+
+        window.closeModal = function() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        document.getElementById('auth-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const role = document.getElementById('auth-role').value;
+
+            try {
+                if(currentMode === 'signup') {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    await addDoc(collection(db, "users"), {
+                        uid: userCredential.user.uid,
+                        email: email,
+                        role: role,
+                        createdAt: serverTimestamp()
+                    });
+                    alert("Pendaftaran berhasil!");
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+                closeModal();
+            } catch (error) {
+                alert("Terjadi kesalahan: " + error.message);
+            }
+        });
+
+        window.handleLogout = function() {
+            signOut(auth);
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            const navAuth = document.getElementById('nav-auth-section');
+            const viewLanding = document.getElementById('view-landing');
+            const viewStudent = document.getElementById('view-student');
+            const viewAdmin = document.getElementById('view-admin');
+
+            if (user) {
+                viewLanding.classList.add('hidden');
+                navAuth.innerHTML = `<span class="text-sm text-slate-300 hidden sm:inline">${user.email}</span><button onclick="handleLogout()" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-sm font-semibold transition">Keluar</button>`;
+
+                const q = query(collection(db, "users"), where("uid", "==", user.uid));
+                const querySnapshot = await getDocs(q);
+                let role = 'student';
+                querySnapshot.forEach((doc) => {
+                    role = doc.data().role;
+                });
+
+                if (role === 'admin') {
+                    viewStudent.classList.add('hidden');
+                    viewAdmin.classList.remove('hidden');
+                    loadAdminData();
+                } else {
+                    viewAdmin.classList.add('hidden');
+                    viewStudent.classList.remove('hidden');
+                    document.getElementById('student-welcome-email').querySelector('span').innerText = user.email;
+                    loadStudentJournals(user.email);
+                }
+            } else {
+                navAuth.innerHTML = `<button onclick="switchModal('login')" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-indigo-600/20 transition">Masuk</button>`;
+                viewLanding.classList.remove('hidden');
+                viewStudent.classList.add('hidden');
+                viewAdmin.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('form-journal').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = auth.currentUser;
+            if(!user) return;
+
+            const type = document.getElementById('j-type').value;
+            const amount = Number(document.getElementById('j-amount').value);
+            const desc = document.getElementById('j-desc').value;
+
+            try {
+                await addDoc(collection(db, "journals"), {
+                    email: user.email,
+                    type: type,
+                    amount: amount,
+                    desc: desc,
+                    date: new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year: 'numeric'}),
+                    timestamp: serverTimestamp()
+                });
+                document.getElementById('form-journal').reset();
+                alert("Jurnal berhasil disimpan!");
+            } catch(err) {
+                alert("Gagal menyimpan: " + err.message);
+            }
+        });
+
+        function loadStudentJournals(email) {
+            const q = query(collection(db, "journals"), where("email", "==", email));
+            onSnapshot(q, (snapshot) => {
+                let html = '';
+                let total = 0;
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if(data.type === 'Pemasukan') total += data.amount;
+                    else total -= data.amount;
+
+                    html += `
+                        <tr class="border-b border-slate-700/50">
+                            <td class="py-4 px-4 text-slate-400">${data.date}</td>
+                            <td class="py-4 px-4"><span class="px-3 py-1 rounded-full text-xs font-semibold ${data.type === 'Pemasukan' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">${data.type}</span></td>
+                            <td class="py-4 px-4 font-semibold text-slate-200">Rp ${data.amount.toLocaleString('id-ID')}</td>
+                            <td class="py-4 px-4 text-slate-300">${data.desc}</td>
+                        </tr>
+                    `;
+                });
+                document.getElementById('student-journal-list').innerHTML = html || `<tr><td colspan="4" class="text-center py-6 text-slate-500">Belum ada catatan jurnal keuangan.</td></tr>`;
+                document.getElementById('stat-balance').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+            });
+        }
+
+        function loadAdminData() {
+            const q = query(collection(db, "journals"));
+            onSnapshot(q, (snapshot) => {
+                let html = '';
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    html += `
+                        <tr class="border-b border-slate-700/50">
+                            <td class="py-4 px-4 font-medium text-indigo-400">${data.email}</td>
+                            <td class="py-4 px-4 text-slate-400">${data.date}</td>
+                            <td class="py-4 px-4"><span class="px-3 py-1 rounded-full text-xs font-semibold ${data.type === 'Pemasukan' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">${data.type}</span></td>
+                            <td class="py-4 px-4 font-semibold text-slate-200">Rp ${data.amount.toLocaleString('id-ID')}</td>
+                            <td class="py-4 px-4 text-slate-300">${data.desc}</td>
+                        </tr>
+                    `;
+                });
+                document.getElementById('admin-all-journals').innerHTML = html || `<tr><td colspan="5" class="text-center py-6 text-slate-500">Belum ada aktivitas jurnal dari siswa.</td></tr>`;
+            });
+        }
+    </script>
+</body>
+</html>
+
